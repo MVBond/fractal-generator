@@ -88,13 +88,11 @@ fn render_row(line_number: u32,
             let complex_number = Complex::new(real, imaginary);
             let value = mandelbrot_iteration(complex_number);
 
-            let colour;
-
-            match value {
-                Some(value) => colour = colour::hsl_to_rgb(value, 1.0, 0.5),
+            let colour = match value {
+                Some(value) => colour::hsl_to_rgb(value, 1.0, 0.5),
                 // White.
-                None => colour = (255, 255, 255),
-            }
+                None => (255, 255, 255),
+            };
 
             rgb.0 += colour.0 as u32;
             rgb.1 += colour.1 as u32;
